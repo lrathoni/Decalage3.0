@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// **************************************************
+// Make the mouette fly in a circle 
+// **************************************************
+
 public class Mouette : MonoBehaviour
 {
     public float speed;
     public Vector3 path_centre;
     public float path_radius;
+    public float height;
     private float x_position, z_position, angle, tiltAroundY, y_max_variation, y_variation;
     public void Start()
     {
@@ -32,12 +37,8 @@ public class Mouette : MonoBehaviour
             transform.eulerAngles.z
             );
         // Vary y position
-        //     // ex: if y_variation is below 10, or between 0 and 10
-        // if (y_variation < -y_max_variation || (y_variation >= 0f && y_variation < y_max_variation)) y_variation += 0.1f;
-        //     // ex: if y_variation is above 10
-        // else if (y_variation > y_max_variation) y_variation -= 0.1f; 
         y_variation = y_max_variation * Mathf.Sin(angle*10);
 
-        transform.position = new Vector3(x_position, 27f + y_variation, z_position);
+        transform.position = new Vector3(x_position, height + y_variation, z_position);
     }
 }
