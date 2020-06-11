@@ -7,16 +7,15 @@ public class Mouette : MonoBehaviour
     public float speed;
     public Vector3 path_centre;
     public float path_radius;
-    private Rigidbody rb;
-    private float x_position, z_position, angle, tiltAroundY;
-
+    private float x_position, z_position, angle, tiltAroundY, y_max_variation, y_variation;
     public void Start()
     {
-        rb = GetComponent<Rigidbody>();
         x_position = transform.position.x;
         z_position = transform.position.z;
         angle = 0f;
         tiltAroundY = 0f;
+        y_variation = 0f;
+        y_max_variation = 8f;
     }
     void Update()
     {
@@ -32,8 +31,13 @@ public class Mouette : MonoBehaviour
             transform.eulerAngles.y + tiltAroundY,
             transform.eulerAngles.z
             );
+        // Vary y position
+        //     // ex: if y_variation is below 10, or between 0 and 10
+        // if (y_variation < -y_max_variation || (y_variation >= 0f && y_variation < y_max_variation)) y_variation += 0.1f;
+        //     // ex: if y_variation is above 10
+        // else if (y_variation > y_max_variation) y_variation -= 0.1f; 
+        y_variation = y_max_variation * Mathf.Sin(angle*10);
 
-        
-        transform.position = new Vector3(x_position, 27f, z_position);
+        transform.position = new Vector3(x_position, 27f + y_variation, z_position);
     }
 }
