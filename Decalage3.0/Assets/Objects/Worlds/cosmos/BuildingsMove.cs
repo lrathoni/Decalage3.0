@@ -24,7 +24,7 @@ public class BuildingsMove : MonoBehaviour
 
     void Update() 
     {
-        i += 0.001f;
+        i += 0.0001f;
         transform.position = new Vector3(transform.position.x, transform.position.y + i, transform.position.z);
 
         if (i > random_number || transform.position.y > 220f)            

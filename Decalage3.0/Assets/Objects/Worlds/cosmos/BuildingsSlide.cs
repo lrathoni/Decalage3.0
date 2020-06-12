@@ -7,8 +7,8 @@ using UnityEngine;
 // **************************************************
 public class BuildingsSlide : MonoBehaviour
 {
-        public float speed, speed2;
-    public float angle, angle2;
+    public float speed, speed2;
+    private float angle, angle2;
     private float x_variation, z_variation;
 
     void Update()
@@ -16,9 +16,8 @@ public class BuildingsSlide : MonoBehaviour
         angle += Mathf.PI/64 * Time.deltaTime * speed;
         angle2 += Mathf.PI/64 * Time.deltaTime * speed2;
 
-        x_variation = 100f * Mathf.Sin(angle*10);
-        z_variation = 100f * Mathf.Sin(angle2*10);
+        x_variation = Mathf.Sin(angle);
+        z_variation = Mathf.Sin(angle2);
         transform.position = new Vector3(transform.position.x+x_variation, transform.position.y, transform.position.z+z_variation);
-
     }
 }
