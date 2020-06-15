@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class GravityAttractor : MonoBehaviour
 {
-    public float gravity = -12f;
+    public float gravity = -20f;
 
     public void Attract(Transform body) {
         Vector3 gravityUp = (body.position - transform.position).normalized;
         Vector3 bodyUp = body.up;
-
         body.GetComponent<Rigidbody>().AddForce(gravityUp * gravity);
         
         Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * body.rotation; 

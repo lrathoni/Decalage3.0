@@ -6,16 +6,18 @@ using UnityEngine;
 public class GravityBody : MonoBehaviour
 {
     public GravityAttractor attractor;
+    private Transform myTransform;
 
-    void Awake()
+    void Start()
     {
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        myTransform = transform;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (attractor) 
-            attractor.Attract(transform);
+        if (attractor) attractor.Attract(myTransform);
     }
 }
